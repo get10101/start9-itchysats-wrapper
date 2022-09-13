@@ -1,0 +1,3 @@
+[submodule "itchysats"]
+	path = itchysats
+	url = https://github.com/itchysats/itchysats/
