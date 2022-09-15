@@ -3,17 +3,18 @@ FROM ghcr.io/itchysats/itchysats/taker:0.6.1
 
 # Get shell and chmod so we are able to add entrypoint script and make it executable
 COPY --from=busybox /bin/sh /bin/sh
+# Needed to be able to make the added scripts executable
 COPY --from=busybox /bin/chmod /bin/chmod
+# Needed to be able to take ownership of the folder mounted as volume
+COPY --from=busybox /bin/chown /bin/chown
 
 ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
 ADD ./health-check.sh /usr/local/bin/health-check.sh
 
-# We require root access to change the entrypoint to be executable
+# We require root access to change the entrypoint to be executable and change ownership once a volume is added
 USER root
 RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
 RUN chmod a+x /usr/local/bin/health-check.sh
-# Set user back to the base container user
-USER 1000
 
 VOLUME /data
 
