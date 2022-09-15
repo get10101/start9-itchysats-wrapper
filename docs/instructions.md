@@ -29,3 +29,4 @@ Limitations of the mainnet beta:
 # Configuration
 
 ItchySats on the Embassy requires a fully synced Electrum (electrs) node as a source for blockchain data. This requirement will be automatically enforced by EmbassyOS.
+The password can be found in the `Properties`.
