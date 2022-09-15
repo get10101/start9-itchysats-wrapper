@@ -20,8 +20,8 @@ build: ["make"]
 description:
   short: Peer-2-peer derivatives on Bitcoin
   long: |
-    
-
+    ItchySats is a non-custodial trading solutions based on DLCs (discreet log contracts).
+    You can trade CFDs (contracts for difference) using an on-chain protocol. No counterparty risk. Just you and your keys.
 assets:
   license: LICENSE
   icon: icon.png
