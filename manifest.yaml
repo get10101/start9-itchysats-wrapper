@@ -87,13 +87,12 @@ interfaces:
       - http
 alerts:
 #  TODO: Wallet + Backup?
-  start: "ItchySats requires a fully synced Electrum to start up properly. The app has an internal wallet derived from -TODO- that has to be funded before using ItchySats."
+  start: "ItchySats requires a fully synced Electrum to start up properly. The app has an internal bdk (Bitcoin Dev Kit) wallet that is funded upon using ItchySats"
 dependencies:
-#  TODO: Allow opt-out by defaulting to the blockstream services instead of electrum? Would this even be a feature we want?
   electrs:
     version: ">=0.9.6 <0.10.0"
     requirement:
-      type: "opt-out"
+      type: required
       how: Set Enable Electrs to External in the config
     description: Used to monitor transactions and publish transactions on chain
 backup:

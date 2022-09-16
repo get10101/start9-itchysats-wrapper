@@ -10,12 +10,6 @@ export const getConfig: T.ExpectedExports.getConfig = compat.getConfig({
   //   "target": "tor-address",
   //   "interface": "main",
   // },
-  "enable-electrs": {
-    "name": "Enable Electrs",
-    "description": "Enables using the Electrs app",
-    "type": "boolean",
-    "default": true,
-  },
   "password": {
     "type": "string" as const,
     "nullable": false,
