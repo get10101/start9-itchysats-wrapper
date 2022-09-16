@@ -86,7 +86,6 @@ interfaces:
       - tcp
       - http
 alerts:
-#  TODO: Wallet + Backup?
   start: "ItchySats requires a fully synced Electrum to start up properly. The app has an internal bdk (Bitcoin Dev Kit) wallet that is funded upon using ItchySats"
 dependencies:
   electrs:
@@ -107,7 +106,8 @@ backup:
       - /data
     mounts:
       BACKUP: /mnt/backup
-      main: /data
+      main: /root/data
+      data: /data
   restore:
     type: docker
     image: compat
@@ -120,7 +120,8 @@ backup:
       - /data
     mounts:
       BACKUP: /mnt/backup
-      main: /data
+      main: /root/data
+      data: /data
 migrations:
   from:
     "*":
