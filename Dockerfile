@@ -1,8 +1,8 @@
 FROM ghcr.io/itchysats/itchysats/taker:0.6.1 as builder
 
-## TODO: It would be nice if we could just use our container, but we are building from distroless - which is great because it's slim, but we don't have any Linux tools in there...
+## TODO: It would be simpler to use our container, but it is based on distroless - which is great because it's slim, but it does not have any sheel support
 ## Can use busybox to copy necessary functionality in, but could not fix depednency on `dev/stdin` for the health_check
-## Use bullseye instead of buster because we need glibc >2.29 available, bullseye is stable since 10.09.2022
+## Use bullseye instead of buster because we need glibc >2.29 available, bullseye is released since 10.09.2022
 FROM debian:bullseye-slim
 COPY --from=builder /usr/bin/binary /bin/itchysats
 
