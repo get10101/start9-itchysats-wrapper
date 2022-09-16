@@ -93,7 +93,6 @@ dependencies:
     version: ">=0.9.6 <0.10.0"
     requirement:
       type: required
-      how: Set Enable Electrs to External in the config
     description: Used to monitor transactions and publish transactions on chain
 backup:
   create:
