@@ -1,28 +1,26 @@
-PKG_ID := $(shell yq e ".id" manifest.yaml)
-PKG_VERSION := $(shell yq e ".version" manifest.yaml)
-TS_FILES := $(shell find ./ -name \*.ts)
+VERSION := $(shell yq e ".version" manifest.yaml)
+S9PK_PATH=$(shell find . -name itchysats.s9pk -print)
+TS_FILES := $(shell find . -name \*.ts )
 
-# delete the target of a rule if it has changed and its recipe exits with a nonzero exit status
 .DELETE_ON_ERROR:
 
 all: verify
 
-verify: $(PKG_ID).s9pk
-	embassy-sdk verify s9pk $(PKG_ID).s9pk
+verify: itchysats.s9pk $(S9PK_PATH)
+	embassy-sdk verify s9pk $(S9PK_PATH)
 
-install:
-	embassy-cli package install $(PKG_ID).s9pk
+install: all itchysats.s9pk
+	embassy-cli package install itchysats.s9pk
 
 clean:
 	rm -f image.tar
-	rm -f $(PKG_ID).s9pk
-	rm -f scripts/*.js
+	rm -f itchysats.s9pk
+
+itchysats.s9pk: manifest.yaml image.tar instructions.md scripts/embassy.js
+	embassy-sdk pack
+
+image.tar: Dockerfile health-check.sh docker_entrypoint.sh
+	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --tag start9/itchysats/main:$(VERSION) --platform=linux/arm64 -o type=docker,dest=image.tar .
 
 scripts/embassy.js: $(TS_FILES)
 	deno bundle scripts/embassy.ts scripts/embassy.js
-
-image.tar: Dockerfile docker_entrypoint.sh
-	docker buildx build --tag start9/$(PKG_ID)/main:$(PKG_VERSION) --platform=linux/arm64 -o type=docker,dest=image.tar .
-
-$(PKG_ID).s9pk: manifest.yaml instructions.md icon.png LICENSE scripts/embassy.js image.tar
-	embassy-sdk pack
