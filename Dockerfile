@@ -15,8 +15,6 @@ ADD ./health-check.sh /usr/local/bin/health-check.sh
 RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
 RUN chmod a+x /usr/local/bin/health-check.sh
 
-VOLUME /data
-
 EXPOSE 8000
 
 ENTRYPOINT ["docker_entrypoint.sh"]
