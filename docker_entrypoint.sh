@@ -24,4 +24,10 @@ data:
     qr: false
 " > /root/start9/stats.yaml
 
-exec itchysats --data-dir=/data --http-address=0.0.0.0:8000 --password=$ITCHYSATS_PASSWORD mainnet --electrum=electrs.embassy:50001
+ELECTRS_URL=electrs.embassy:50001
+
+if [ "$(yq ".custom-electrs.enable-custom-electrs" /root/start9/config.yaml)" = "true" ]; then
+	ELECTRS_URL=$(yq e '.custom-electrs.electrs-url' /root/start9/config.yaml)
+fi
+
+exec itchysats --data-dir=/data --http-address=0.0.0.0:8000 --password=$ITCHYSATS_PASSWORD mainnet --electrum=$ELECTRS_URL
