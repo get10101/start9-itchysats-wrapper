@@ -66,6 +66,8 @@ volumes:
     type: data
   data:
     type: data
+  compat:
+    type: assets
 interfaces:
   main:
     name: ItchySats Interface
@@ -94,28 +96,22 @@ backup:
     type: docker
     image: compat
     system: true
-    entrypoint: compat
-    args:
-      - duplicity
-      - create
-      - /mnt/backup
-      - /data
+    entrypoint: /mnt/assets/backup-create.sh
     mounts:
       BACKUP: /mnt/backup
+      main: /root/start9
       data: /data
+      compat: /mnt/assets
   restore:
     type: docker
     image: compat
     system: true
-    entrypoint: compat
-    args:
-      - duplicity
-      - restore
-      - /mnt/backup
-      - /data
+    entrypoint: /mnt/assets/backup-restore.sh
     mounts:
       BACKUP: /mnt/backup
+      main: /root/start9
       data: /data
+      compat: /mnt/assets
 migrations:
   from:
     "*":
