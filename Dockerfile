@@ -1,4 +1,4 @@
-FROM ghcr.io/itchysats/itchysats/taker:0.6.1 as builder
+FROM ghcr.io/itchysats/itchysats/taker:0.7.0@sha256:0c29162897a6c2bc2093373306f920400a0718960e1e4b1d80bd44beb485a498 as builder
 
 ## TODO: It would be simpler to use our container, but it is based on distroless - which is great because it's slim, but it does not have any shell support
 ## Can use busybox to copy necessary functionality in, but could not fix depednency on `dev/stdin` for the health_check
