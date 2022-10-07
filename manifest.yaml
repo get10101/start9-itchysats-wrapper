@@ -1,11 +1,9 @@
 id: itchysats
 title: "ItchySats"
-version: 0.6.1
+version: 0.7.0
 release-notes: |
-  * Release 0.6.1 fixes a minor UI bug for 0.6.0.
-  * Release 0.6.0 enables ETHUSD CFDs. You can now trade BTCUSD and ETHUSD using your Bitcoin.
-  * Changelog for [0.6.0](https://github.com/itchysats/itchysats/releases/tag/0.6.0)
-  * Changelog for [0.6.1](https://github.com/itchysats/itchysats/releases/tag/0.6.1)
+  * With 0.7.0 we replaced basic authentication with cookie-based authentication. Deterministic password is the same as before (see ItchySats service Properties).
+  * Changelog for [0.7.0](https://github.com/itchysats/itchysats/releases/tag/0.7.0)
 license: mit
 # TODO: This repo does not exist yet, but I think it's correct to assume that it will?
 wrapper-repo: "https://github.com/Start9Labs/itchysats-wrapper"
