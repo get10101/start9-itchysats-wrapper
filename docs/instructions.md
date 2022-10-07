@@ -1,7 +1,14 @@
 # Configuration
 
-ItchySats on the Embassy requires a fully synced Electrum (electrs) node as a source for blockchain data. This requirement will be automatically enforced by EmbassyOS.
+ItchySats on the Embassy requires a fully synced Electrs node as a source for blockchain data. This requirement will be automatically enforced by EmbassyOS.
 The password can be found in the `Properties` section.
+
+## Custom Electrs in case of issues with Electrs
+
+In case you run into problems with your Electrs setup (e.g. you have to re-index because of a problem) it is possible to switch ItchySats to use a custom Electrs URL in the config.
+Be mindful when using this feature because you are not fully self-sovereign when using a public Electrs instance.
+Note that using a public Electrs instance doesn't pose a risk for your keys being stolen, but you won't have full privacy anymore.
+You should always prefer to use your embassy's Electrs instance and only activate a custom URL temporarily in case of issues.
 
 # ItchySats
 
